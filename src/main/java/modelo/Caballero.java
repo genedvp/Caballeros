@@ -8,7 +8,14 @@ public class Caballero {
 	private int experiencia;
 	private String foto;
 	private Arma arma_id;
+	private Escudo escudo_id;
 	
+	public Escudo getEscudo_id() {
+		return escudo_id;
+	}
+	public void setEscudo_id(Escudo escudo_id) {
+		this.escudo_id = escudo_id;
+	}
 	public int getId() {
 		return id;
 	}

@@ -1,14 +1,11 @@
 package modelo;
 
-import java.util.Date;
-
 public class Arma {
 	
 	private int id;
-	private Date fecha;
-	private Caballero caballero1_id;
-	private Caballero caballero2_id;
-	private Caballero ganador_id;
+	private String nombre;
+	private int capacidad_danio;
+	private String foto;
 	
 	public int getId() {
 		return id;
@@ -16,30 +13,30 @@ public class Arma {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getFecha() {
-		return fecha;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public Caballero getCaballero1_id() {
-		return caballero1_id;
+	public int getCapacidad_danio() {
+		return capacidad_danio;
 	}
-	public void setCaballero1_id(Caballero caballero1_id) {
-		this.caballero1_id = caballero1_id;
+	public void setCapacidad_danio(int capacidad_danio) {
+		this.capacidad_danio = capacidad_danio;
 	}
-	public Caballero getCaballero2_id() {
-		return caballero2_id;
+	public String getFoto() {
+		return foto;
 	}
-	public void setCaballero2_id(Caballero caballero2_id) {
-		this.caballero2_id = caballero2_id;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
-	public Caballero getGanador_id() {
-		return ganador_id;
+	@Override
+	public String toString() {
+		return "Arma [id=" + id + ", nombre=" + nombre + ", capacidad_danio=" + capacidad_danio + ", foto=" + foto
+				+ "]";
 	}
-	public void setGanador_id(Caballero ganador_id) {
-		this.ganador_id = ganador_id;
-	}	
-
+	
+	
 	
 }

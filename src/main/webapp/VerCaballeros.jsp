@@ -16,15 +16,19 @@
 			      <th scope="col">Nombre</th>
 			      <th scope="col">Fuerza</th>
 			      <th scope="col">Experiencia</th>
+			      <th scope="col">Arma</th>
+			      <th scope="col">Escudo</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			  	<c:forEach items="${caballeros}" var="caballero">
 					<tr>
-							   <td>${caballero.id}</td>
-							   <td>${caballero.nombre}</td>
-							   <td>${caballero.fuerza}</td>
-							   <td>${caballero.experiencia}</td>
+						<td>${caballero.id}</td>
+						<td>${caballero.nombre}</td>
+						<td>${caballero.fuerza}</td>
+						<td>${caballero.experiencia}</td>
+						<td>${caballero.arma_id.nombre}</td>
+						<td>${caballero.escudo_id.nombre}</td>
 					</tr>
 				</c:forEach>
 			 </tbody>

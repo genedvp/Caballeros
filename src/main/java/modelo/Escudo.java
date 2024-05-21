@@ -24,5 +24,11 @@ public class Escudo {
 	public void setCapacidaDefensa(int capacidaDefensa) {
 		this.capacidaDefensa = capacidaDefensa;
 	}
+	
+	@Override
+	public String toString() {
+		return "Escudo [id=" + id + ", nombre=" + nombre + ", capacidaDefensa=" + capacidaDefensa + "]";
+	}
+	
 
 }

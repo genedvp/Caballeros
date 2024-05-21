@@ -28,12 +28,12 @@ public class ModeloCaballero {
                 caballero.setFuerza(rs.getInt("fuerza"));
                 caballero.setExperiencia(rs.getInt("experiencia"));
                 caballero.setFoto(rs.getString("foto"));
-                
-                //obtener y asignar arma
+               
+                //obtener toda la información de arma y asignarla 
                 Arma arma = getArma(rs.getInt("arma_id"));
                 caballero.setArma_id(arma);
                 
-                //obtener y asignar escudo
+                //obtener toda la información de esucdo y asignarla 
                 Escudo escudo = getEscudo(rs.getInt("escudo_id"));
                 caballero.setEscudo_id(escudo);
                 
@@ -60,7 +60,7 @@ public class ModeloCaballero {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             
-            if (rs.next()) {  // Mover el cursor a la primera fila
+            if (rs.next()) {  
                 escudo.setId(rs.getInt("id"));
                 escudo.setCapacidaDefensa(rs.getInt("capacidad_defensa"));
                 escudo.setNombre(rs.getString("nombre"));
@@ -86,7 +86,7 @@ public class ModeloCaballero {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             
-            if (rs.next()) {  // Mover el cursor a la primera fila
+            if (rs.next()) { 
                 arma.setId(rs.getInt("id"));
                 arma.setCapacidad_danio(rs.getInt("capacidad_danio"));
                 arma.setFoto(rs.getString("foto"));

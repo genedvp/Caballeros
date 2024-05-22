@@ -178,28 +178,24 @@ public void guardarCaballero(Caballero caballero) {
 	
 	public boolean nombreExiste(String nombre) {
 		
-		ArrayList<Caballero> caballeros = getCaballeros();
-		
-		for (Caballero caballero : caballeros) {
-
-			if (caballero.getNombre().equalsIgnoreCase(nombre)) {
-				//existe
-				return true;
-			} else {
-				//no existe
-				return false;
-			}
-		}
-		return false;
-
+	    ArrayList<Caballero> caballeros = getCaballeros();
+	    
+	    for (Caballero caballero : caballeros) {
+	        if (caballero.getNombre().equalsIgnoreCase(nombre)) {
+	            // existe
+	            return true;
+	        }
+	    }
+	    // El nombre no existe
+	    return false;
 	}
+
 	public boolean rango(int fuerza) {
 		
 		if (fuerza>0 && fuerza<=100) {
 			return true;
 			
-		} else {
-			return false;
 		}
+			return false;
 	}
 }

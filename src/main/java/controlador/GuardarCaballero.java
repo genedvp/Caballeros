@@ -46,7 +46,11 @@ public class GuardarCaballero extends HttpServlet {
 
         Caballero caballero = new Caballero();
         
-		if (modeloCaballero.nombreExiste(nombre) == false && modeloCaballero.rango(fuerza) == true && (arma.getId()>0) && (escudo.getId()>0)) {
+        
+
+        
+		if (nombre != null && !nombre.isEmpty() && !modeloCaballero.nombreExiste(nombre) &&
+        	    arma != null && armaId > 0 && escudo != null && escudoId > 0 && modeloCaballero.rango(fuerza)) {
 			
 			caballero.setNombre(nombre);
 			

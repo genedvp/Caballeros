@@ -15,7 +15,7 @@ public class ModeloCaballero {
         String sql = "select * from caballeros";
 
         try {
-            
+           
             PreparedStatement pst = this.conector.conexion.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             
@@ -37,20 +37,21 @@ public class ModeloCaballero {
                 Escudo escudo = getEscudo(rs.getInt("escudo_id"));
                 caballero.setEscudo_id(escudo);
                 
-                System.out.println(caballero.toString());
+                //System.out.println(caballero.toString());
                 
                 caballeros.add(caballero);
             }
             
         } catch (SQLException e) {
-            System.out.println("Fallo al conectarse en la base de datos.");
-            e.printStackTrace();
+        	
+            System.out.println("Fallo al conectarse en la base de datos. (caballeros)");
+           
         }
         
         return caballeros;
     }
 
-    private Escudo getEscudo(int id) {
+    public Escudo getEscudo(int id) {
         String sql = "select * from escudos where id=?";
         Escudo escudo = new Escudo();
         PreparedStatement pst;
@@ -69,12 +70,13 @@ public class ModeloCaballero {
             return escudo;
             
         } catch (SQLException e) {
-            e.printStackTrace();
+        	
+        	System.out.println("Fallo al conectarse en la base de datos. (escudos)");
             return null;
         }
     }
 
-    private Arma getArma(int id) {
+    public Arma getArma(int id) {
         
         String sql = "select * from armas where id=?";
         
@@ -96,8 +98,108 @@ public class ModeloCaballero {
             return arma;
             
         } catch (SQLException e) {
-            e.printStackTrace();
+        	
+        	System.out.println("Fallo al conectarse en la base de datos. (armas)");
             return null;
         }
     }
+
+public void guardarCaballero(Caballero caballero) {
+		
+		String sql = "INSERT INTO caballeros (nombre, fuerza, arma_id, escudo_id) VALUES (?, ?, ?, ?)";
+		
+		try {
+			
+			PreparedStatement pst = conector.conexion.prepareStatement(sql);
+			pst.setString(1, caballero.getNombre());
+			pst.setInt(2, caballero.getFuerza());
+			pst.setInt(3, caballero.getArma_id().getId());
+			pst.setInt(4, caballero.getEscudo_id().getId());
+			/*pst.setInt(5, 0);
+			pst.setString(6, "img_");*/
+			
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("error insert caballero");
+		}
+	}
+
+	public ArrayList<Escudo> getEscudos() {
+		
+		ArrayList<Escudo> escudos = new ArrayList<>();
+		String sql = "select * from escudos";
+		
+		try {
+			PreparedStatement pst = this.conector.conexion.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				Escudo escudo = new Escudo();
+				escudo.setId(rs.getInt("id"));
+				escudo.setCapacidaDefensa(rs.getInt("capacidad_defensa"));
+				escudo.setNombre(rs.getString("nombre"));
+				
+				escudos.add(escudo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Fallo al conectarse en la base de datos. (escudos)");
+		}
+		
+		return escudos;
+	}
+
+	public ArrayList<Arma> getArmas() {
+		
+		ArrayList<Arma> armas = new ArrayList<>();
+		String sql = "select * from armas";
+		
+		try {
+			PreparedStatement pst = this.conector.conexion.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				Arma arma = new Arma();
+				arma.setId(rs.getInt("id"));
+				arma.setCapacidad_danio(rs.getInt("capacidad_danio"));
+				arma.setFoto(rs.getString("foto"));
+				arma.setNombre(rs.getString("nombre"));
+				
+				armas.add(arma);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Fallo al conectarse en la base de datos. (armas)");
+		}
+		
+		return armas;
+	}
+	
+	public boolean nombreExiste(String nombre) {
+		
+		ArrayList<Caballero> caballeros = getCaballeros();
+		
+		for (Caballero caballero : caballeros) {
+
+			if (caballero.getNombre().equalsIgnoreCase(nombre)) {
+				//existe
+				return true;
+			} else {
+				//no existe
+				return false;
+			}
+		}
+		return false;
+
+	}
+	public boolean rango(int fuerza) {
+		
+		if (fuerza>0 && fuerza<=100) {
+			return true;
+			
+		} else {
+			return false;
+		}
+	}
 }

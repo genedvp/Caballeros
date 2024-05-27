@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ModeloCaballero {
     
@@ -197,5 +198,60 @@ public void guardarCaballero(Caballero caballero) {
 			
 		}
 			return false;
+	}
+
+	public boolean caballerosConNombre(String desconocido) {
+
+	ArrayList<Caballero> caballeros = getCaballeros();
+		    
+		for (Caballero caballero : caballeros) {
+			
+		    if (caballero.getNombre().contains(desconocido)) {
+		    	
+		    	return true;
+		    	
+		        }
+		 }
+		return false;
+		    
+	}
+
+	public ArrayList<Caballero> getCaballerosConNombre(String desconocido) {
+		
+		ArrayList<Caballero> caballeros = getCaballeros();
+		
+	    Iterator<Caballero> caballerosI = caballeros.iterator();
+
+		    while(caballerosI.hasNext()) {
+		    	
+		      Caballero c = (Caballero) caballerosI.next();
+	
+			      if (!(c.getNombre().toLowerCase().contains(desconocido.toLowerCase()))) {
+			    	  
+			    	  caballerosI.remove();
+			    	  
+			        }
+		    }
+		
+		return caballeros;
+	}
+
+	public ArrayList<Caballero> removeCaballero(int idElegido) {
+
+		ArrayList<Caballero> caballeros = getCaballeros();
+		
+	    Iterator<Caballero> caballerosI = caballeros.iterator();
+
+		    while(caballerosI.hasNext()) {
+		    	
+		      Caballero c = (Caballero) caballerosI.next();
+	
+			      if ((c.getId()==idElegido)) {
+			    	  
+			    	  caballerosI.remove();
+			        }
+		    }
+		return caballeros;
+		
 	}
 }

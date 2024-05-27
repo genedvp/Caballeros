@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import modelo.Caballero;
 import modelo.ModeloCaballero;
 
 /**
- * Servlet implementation class VerCaballeros
+ * Servlet implementation class LuchaCaballero1
  */
-@WebServlet("/VerCaballeros")
-public class VerCaballeros extends HttpServlet {
+@WebServlet("/LuchaCaballero1")
+public class LuchaCaballero1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerCaballeros() {
+    public LuchaCaballero1() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -32,39 +32,28 @@ public class VerCaballeros extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("msg", request.getParameter("msg"));
-		
-		String desconocido = request.getParameter("stringDesconocido");
-		
+
 		ModeloCaballero mc = new ModeloCaballero();
 		
-		//if (mc.caballerosConNombre(desconocido)) {
-		if (desconocido != null) {
-
-			ArrayList<Caballero> caballeros = mc.getCaballerosConNombre(desconocido);
-			
-			request.setAttribute("caballeros", caballeros);
-			
-			request.getRequestDispatcher("VerCaballeros.jsp").forward(request, response);
-			
-		} else {
-			
-			ArrayList<Caballero> caballeros = mc.getCaballeros();
-			
-			request.setAttribute("caballeros", caballeros);
-			
-			request.getRequestDispatcher("VerCaballeros.jsp").forward(request, response);
-		}
-
+		ArrayList<Caballero> caballeros = mc.getCaballeros();
+		
+		request.setAttribute("caballeros", caballeros);
+		
+		request.getRequestDispatcher("VerLucha.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		ModeloCaballero mc = new ModeloCaballero();
+		
+		ArrayList<Caballero> caballeros = mc.getCaballeros();
+		
+		request.setAttribute("caballeros", caballeros);
+		
+		request.getRequestDispatcher("VerLucha.jsp").forward(request, response);
 	}
 
 }

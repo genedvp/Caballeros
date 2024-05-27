@@ -68,9 +68,8 @@
 		</div>
 		</div>
 		<div class="row">
-		<a href="LuchaCaballero1">
+		<a href="LuchaCaballeroPrimero">
 				<button class="btn btn-outline-success" type="submit" name="pelea">PELEAR</button>
-
 		</a>
 	</div>
 	</div>

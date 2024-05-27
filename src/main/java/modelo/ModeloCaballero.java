@@ -249,9 +249,48 @@ public void guardarCaballero(Caballero caballero) {
 			      if ((c.getId()==idElegido)) {
 			    	  
 			    	  caballerosI.remove();
+			    	  
 			        }
 		    }
 		return caballeros;
 		
+	}
+
+	public Caballero getCaballero(int idPrimero) {
+		String sql = "select * from caballeros";
+
+        try {
+           
+            PreparedStatement pst = this.conector.conexion.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()) {
+                
+                Caballero caballero = new Caballero();
+                
+                caballero.setId(rs.getInt("id"));
+                caballero.setNombre(rs.getString("nombre"));
+                caballero.setFuerza(rs.getInt("fuerza"));
+                caballero.setExperiencia(rs.getInt("experiencia"));
+                caballero.setFoto(rs.getString("foto"));
+               
+                //obtener toda la información de arma y asignarla 
+                Arma arma = getArma(rs.getInt("arma_id"));
+                caballero.setArma_id(arma);
+                
+                //obtener toda la información de esucdo y asignarla 
+                Escudo escudo = getEscudo(rs.getInt("escudo_id"));
+                caballero.setEscudo_id(escudo);
+                
+                return caballero;
+            }
+            
+        } catch (SQLException e) {
+        	
+            System.out.println("Fallo al conectarse en la base de datos. (OBTENER UN CABALLERO)");
+           
+        }
+        
+        return null;
 	}
 }

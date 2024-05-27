@@ -15,7 +15,7 @@ import modelo.ModeloCaballero;
 /**
  * Servlet implementation class LuchaCaballero1
  */
-@WebServlet("/LuchaCaballero1")
+@WebServlet("/LuchaCaballeroSegundo")
 public class LuchaCaballeroSegundo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,24 +33,23 @@ public class LuchaCaballeroSegundo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idElegido = Integer.parseInt(request.getParameter("elegido"));
-		
-		//o caballero1 probar con ambos
+		int idPrimero = Integer.parseInt(request.getParameter("idPrimero"));
 		
 		ModeloCaballero mc = new ModeloCaballero();
 		
-		ArrayList<Caballero> caballeros = mc.removeCaballero(idElegido);
+		ArrayList<Caballero> caballeros = mc.removeCaballero(idPrimero);
 		
+		request.setAttribute("idPrimero", idPrimero);
 		request.setAttribute("caballeros", caballeros);
 		
-		request.getRequestDispatcher("VerLucha.jsp").forward(request, response);
+		request.getRequestDispatcher("VerLuchaSegundo.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }

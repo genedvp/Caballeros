@@ -39,7 +39,6 @@ public class VerCaballeros extends HttpServlet {
 		
 		ModeloCaballero mc = new ModeloCaballero();
 		
-		//if (mc.caballerosConNombre(desconocido)) {
 		if (desconocido != null) {
 
 			ArrayList<Caballero> caballeros = mc.getCaballerosConNombre(desconocido);
@@ -56,9 +55,7 @@ public class VerCaballeros extends HttpServlet {
 			
 			request.getRequestDispatcher("VerCaballeros.jsp").forward(request, response);
 		}
-
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

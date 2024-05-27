@@ -16,13 +16,13 @@ import modelo.ModeloCaballero;
  * Servlet implementation class LuchaCaballero1
  */
 @WebServlet("/LuchaCaballero1")
-public class LuchaCaballero2 extends HttpServlet {
+public class LuchaCaballeroPrimero extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LuchaCaballero2() {
+    public LuchaCaballeroPrimero() {
         super();
         
         // TODO Auto-generated constructor stub
@@ -32,14 +32,10 @@ public class LuchaCaballero2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int idElegido = Integer.parseInt(request.getParameter("elegido"));
-		
-		//o caballero1 probar con ambos
-		
+
 		ModeloCaballero mc = new ModeloCaballero();
 		
-		ArrayList<Caballero> caballeros = mc.removeCaballero(idElegido);
+		ArrayList<Caballero> caballeros = mc.getCaballeros();
 		
 		request.setAttribute("caballeros", caballeros);
 		
@@ -51,6 +47,13 @@ public class LuchaCaballero2 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ModeloCaballero mc = new ModeloCaballero();
+		
+		ArrayList<Caballero> caballeros = mc.getCaballeros();
+		
+		request.setAttribute("caballeros", caballeros);
+		
+		request.getRequestDispatcher("VerLucha.jsp").forward(request, response);
 	}
 
 }
